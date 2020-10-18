@@ -33,7 +33,7 @@ func (s *Set) Empty() bool {
 
 // Add add an element to a set
 func (s *Set) Add(element interface{}) (bool, error) {
-	elementType := fmt.Sprintf("%T", s)
+	elementType := fmt.Sprintf("%T", element)
 	if s.memberType == "" {
 		s.memberType = elementType
 	}
