@@ -26,6 +26,11 @@ func (s *Set) Members() []interface{} {
 	return s.members
 }
 
+// Size returns the total number of elements in the set
+func (s *Set) Size() int {
+	return len(s.members)
+}
+
 // Empty returns true if there no elements in the sets
 func (s *Set) Empty() bool {
 	return len(s.members) == 0
@@ -51,4 +56,37 @@ func (s *Set) Add(element interface{}) (bool, error) {
 	s.members = append(s.members, element)
 
 	return true, nil
+}
+
+// Remove remove an element from a set
+func (s *Set) Remove(element interface{}) bool {
+	for i, member := range s.members {
+		if s.equals(&member, &element) {
+			 bi := i - 1
+			 if bi < 0 {
+			 	bi = 0
+			 }
+
+			s1 := s.members[0:i]
+			s2 := s.members[i+1:]
+
+			s.members = s1
+			s.members = append(s.members, s2...)
+
+			return true
+		}
+	}
+
+	return false
+}
+
+// Contains checks if an element exists in a set 
+func (s *Set) Contains(element interface{}) bool {
+	for _, member := range s.members {
+		if s.equals(&member, &element) {
+			return true
+		}
+	}
+
+	return false
 }

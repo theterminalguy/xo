@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 
 	"github.com/theterminalguy/xo/set"
 )
@@ -10,11 +9,20 @@ import (
 func main() {
 	s := new(set.Set)
 	s.Add("a")
-	_, err := s.Add(1)
+	s.Add("b")
+	s.Add("b")
+	s.Add("c")
 
-	if err != nil {
-		log.Fatal(err.Error())
-	}
+	s.Remove("c")
 
-	fmt.Println(s.Members())
+	s.Add("Simon")
+	s.Add("Peter")
+
+	fmt.Println(s.Members(), s.Size())
+
+	fmt.Println("Set contains Simon?", s.Contains("Simon"))
+
+	//arr := []string{"a", "b", "c"}
+
+	//fmt.Println(arr[2+1:])
 }
