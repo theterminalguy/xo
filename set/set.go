@@ -7,7 +7,7 @@ import (
 
 // Comparable an interface that must be implemented to compare members of the set
 type Comparable interface {
-	equals(a *interface{}, b *interface{}) bool
+	Equals(a *interface{}, b *interface{}) bool
 }
 
 // Set a collection of unique elements
@@ -17,7 +17,7 @@ type Set struct {
 }
 
 // Equals check if two members of a set are equal
-func (s *Set) equals(a *interface{}, b *interface{}) bool {
+func (s *Set) Equals(a *interface{}, b *interface{}) bool {
 	return *a == *b
 }
 
@@ -48,7 +48,7 @@ func (s *Set) Add(element interface{}) (bool, error) {
 	}
 
 	for _, member := range s.members {
-		if s.equals(&member, &element) {
+		if s.Equals(&member, &element) {
 			return false, errors.New("element already exist in the set")
 		}
 	}
@@ -61,7 +61,7 @@ func (s *Set) Add(element interface{}) (bool, error) {
 // Remove remove an element from a set
 func (s *Set) Remove(element interface{}) bool {
 	for i, member := range s.members {
-		if s.equals(&member, &element) {
+		if s.Equals(&member, &element) {
 			 bi := i - 1
 			 if bi < 0 {
 			 	bi = 0
@@ -83,7 +83,7 @@ func (s *Set) Remove(element interface{}) bool {
 // Contains checks if an element exists in a set 
 func (s *Set) Contains(element interface{}) bool {
 	for _, member := range s.members {
-		if s.equals(&member, &element) {
+		if s.Equals(&member, &element) {
 			return true
 		}
 	}
