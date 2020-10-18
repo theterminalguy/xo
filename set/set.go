@@ -62,10 +62,10 @@ func (s *Set) Add(element interface{}) (bool, error) {
 func (s *Set) Remove(element interface{}) bool {
 	for i, member := range s.members {
 		if s.Equals(&member, &element) {
-			 bi := i - 1
-			 if bi < 0 {
-			 	bi = 0
-			 }
+			bi := i - 1
+			if bi < 0 {
+				bi = 0
+			}
 
 			s1 := s.members[0:i]
 			s2 := s.members[i+1:]
@@ -80,7 +80,7 @@ func (s *Set) Remove(element interface{}) bool {
 	return false
 }
 
-// Contains checks if an element exists in a set 
+// Contains checks if an element exists in a set
 func (s *Set) Contains(element interface{}) bool {
 	for _, member := range s.members {
 		if s.Equals(&member, &element) {
