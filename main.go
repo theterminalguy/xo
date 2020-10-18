@@ -1,7 +1,20 @@
 package main
 
-func main() {
-	b := new(bool)
+import (
+	"fmt"
+	"log"
 
-	println(*b)
+	"github.com/theterminalguy/xo/set"
+)
+
+func main() {
+	s := new(set.Set)
+	s.Add("a")
+	_, err := s.Add("a")
+
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+
+	fmt.Println(s.Members())
 }
